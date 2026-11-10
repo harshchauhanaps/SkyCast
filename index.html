@@ -1,0 +1,165 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkyCast Weather</title>
+  <link rel="stylesheet" href="styles.css?v=5">
+  <script src="app.js?v=5" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top"><span class="brand-mark">☀</span>SkyCast</a>
+      <p class="sidebar-label">POPULAR CITIES</p>
+
+      <div class="saved-places">
+        <button class="place-button is-active" type="button" data-city="New Delhi, India"><span class="place-dot"></span>New Delhi</button>
+        <button class="place-button" type="button" data-city="Mumbai, India"><span class="place-dot"></span>Mumbai</button>
+        <button class="place-button" type="button" data-city="Bengaluru, India"><span class="place-dot"></span>Bengaluru</button>
+        <button class="place-button" type="button" data-city="Chennai, India"><span class="place-dot"></span>Chennai</button>
+        <button class="place-button" type="button" data-city="Kolkata, India"><span class="place-dot"></span>Kolkata</button>
+        <button class="place-button" type="button" data-city="Hyderabad, India"><span class="place-dot"></span>Hyderabad</button>
+        <button class="place-button" type="button" data-city="Pune, India"><span class="place-dot"></span>Pune</button>
+        <button class="place-button" type="button" data-city="Ahmedabad, India"><span class="place-dot"></span>Ahmedabad</button>
+        <button class="place-button" type="button" data-city="Jaipur, India"><span class="place-dot"></span>Jaipur</button>
+        <button class="place-button" type="button" data-city="Kochi, India"><span class="place-dot"></span>Kochi</button>
+        <button class="place-button" type="button" data-city="Lucknow, India"><span class="place-dot"></span>Lucknow</button>
+        <button class="place-button" type="button" data-city="Surat, India"><span class="place-dot"></span>Surat</button>
+        <button class="place-button" type="button" data-city="Indore, India"><span class="place-dot"></span>Indore</button>
+        <button class="place-button" type="button" data-city="Nagpur, India"><span class="place-dot"></span>Nagpur</button>
+        <button class="place-button" type="button" data-city="Bhopal, India"><span class="place-dot"></span>Bhopal</button>
+        <button class="place-button" type="button" data-city="Varanasi, India"><span class="place-dot"></span>Varanasi</button>
+        <button class="place-button" type="button" data-city="Chandigarh, India"><span class="place-dot"></span>Chandigarh</button>
+        <button class="place-button" type="button" data-city="Coimbatore, India"><span class="place-dot"></span>Coimbatore</button>
+        <button class="place-button" type="button" data-city="Visakhapatnam, India"><span class="place-dot"></span>Visakhapatnam</button>
+        <button class="place-button" type="button" data-city="Bhubaneswar, India"><span class="place-dot"></span>Bhubaneswar</button>
+        <button class="place-button" type="button" data-city="Guwahati, India"><span class="place-dot"></span>Guwahati</button>
+        <button class="place-button" type="button" data-city="Patna, India"><span class="place-dot"></span>Patna</button>
+        <button class="place-button" type="button" data-city="London, United Kingdom"><span class="place-dot"></span>London</button>
+        <button class="place-button" type="button" data-city="Tokyo, Japan"><span class="place-dot"></span>Tokyo</button>
+        <button class="place-button" type="button" data-city="New York, United States"><span class="place-dot"></span>New York</button>
+      </div>
+
+      <div class="sidebar-note">
+        <strong>Weather, made clear.</strong>
+        <p>Check today's weather and plan for the days ahead.</p>
+      </div>
+      <p class="sidebar-footer">A student weather project</p>
+    </aside>
+
+    <main class="main-content" id="top">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow" id="todayLabel">WEATHER TODAY</p>
+          <h1>Good day<span class="title-dot">.</span></h1>
+        </div>
+
+        <div class="toolbar">
+          <form class="search-form" id="searchForm" role="search">
+            <label class="sr-only" for="citySearch">Search for a city</label>
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="citySearch" type="search" placeholder="Search a city..." required>
+            <button class="search-submit" type="submit">Search</button>
+          </form>
+          <button class="location-button" id="locationButton" type="button" aria-label="Use my location">◎</button>
+        </div>
+      </header>
+
+      <p class="status-line" id="statusLine" role="status">Loading weather...</p>
+      <div class="error-message" id="errorMessage" role="alert" hidden></div>
+
+      <section class="current-hero panel">
+        <div>
+          <div class="location-heading">
+            <div>
+              <p class="section-kicker">CURRENT WEATHER</p>
+              <h2 id="locationName">New Delhi</h2>
+              <p class="location-detail" id="locationDetail">India</p>
+            </div>
+            <span class="live-pill"><span class="live-dot"></span>LIVE</span>
+          </div>
+
+          <div class="temperature-block">
+            <div class="temperature" id="currentTemperature">--°</div>
+            <div>
+              <div class="condition-text" id="currentCondition">Loading...</div>
+              <p class="high-low" id="highLow">High: --° · Low: --°</p>
+            </div>
+          </div>
+          <p class="updated-at" id="updatedAt">Waiting for weather data</p>
+        </div>
+
+        <div class="hero-art">
+          <div class="weather-emoji" id="heroIcon" aria-hidden="true">🌤️</div>
+          <p class="art-caption" id="heroCaption">Today's weather</p>
+        </div>
+      </section>
+
+      <section class="details-section">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">AT A GLANCE</p>
+            <h2>Today's details</h2>
+          </div>
+          <div class="unit-switch" aria-label="Temperature unit">
+            <button class="unit-button is-selected" type="button" data-unit="celsius" aria-pressed="true">°C</button>
+            <button class="unit-button" type="button" data-unit="fahrenheit" aria-pressed="false">°F</button>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <article class="metric-card panel">
+            <div class="metric-label">Feels like</div>
+            <div class="metric-value" id="feelsLike">--°</div>
+            <p class="metric-foot" id="feelsNote">What it feels like outside</p>
+          </article>
+          <article class="metric-card panel">
+            <div class="metric-label">Humidity</div>
+            <div class="metric-value" id="humidity">--%</div>
+            <p class="metric-foot">Relative humidity</p>
+          </article>
+          <article class="metric-card panel">
+            <div class="metric-label">Wind</div>
+            <div class="metric-value" id="windSpeed">-- km/h</div>
+            <p class="metric-foot" id="windDirection">Wind speed</p>
+          </article>
+          <article class="metric-card panel">
+            <div class="metric-label">UV index</div>
+            <div class="metric-value" id="uvIndex">--</div>
+            <p class="metric-foot" id="uvNote">Today's peak</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="forecast-section panel">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">COMING UP</p>
+            <h2>Hourly forecast</h2>
+          </div>
+          <span class="section-aside">Next 8 hours</span>
+        </div>
+        <div class="hourly-list" id="hourlyList"></div>
+      </section>
+
+      <section class="forecast-section panel">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">LOOK AHEAD</p>
+            <h2>7-day forecast</h2>
+          </div>
+          <span class="section-aside">This week</span>
+        </div>
+        <div class="daily-list" id="dailyList"></div>
+      </section>
+
+      <footer class="page-footer">
+        <span>Forecasts for planning your day</span>
+        <span>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a></span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
